@@ -1,13 +1,31 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="bg-gradient-to-r from-red-300 via-red-100 to-red-400">
+
 <head>
   <meta charset="utf-8">
   <title>CatalogoProductos</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <script type="text/javascript">
+    window.onload = function () {
+      (function (d, script) {
+        script = d.createElement('script');
+        script.type = 'text/javascript';
+        script.async = true;
+        script.src = 'https://w.app/widget-v1/MT1wg3.js';
+        d.getElementById('widget-container').appendChild(script);
+      }(document));
+    };
+
+  </script>
+  <div id="widget-container"></div>
+
 </head>
+
 <body>
   <app-root></app-root>
 </body>
+
 </html>
