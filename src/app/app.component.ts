@@ -20,6 +20,7 @@ export class AppComponent {
   categoriaSeleccionada: string | null = null;
   filtroNombre: string = '';
   productosFiltrado: Producto[] = [];
+  categoriasGlobales = ['Abarrotes', 'Pastelería', 'Higiene', 'Limpieza', 'Bebidas', 'Snacks'];
 
 
   constructor(private productoService: ProductoService) { }
@@ -64,6 +65,11 @@ export class AppComponent {
       }
       this.productosFiltrado = filtrados;
     }, 20); // Espera 200 ms antes de aplicar el filtro
+
+
+  }
+  onImgError(event: Event) {
+    (event.target as HTMLImageElement).src = '../images/sinimagen.jpg';
   }
   // // Método para asignar la categoría seleccionada (por ejemplo, al hacer click en una categoría)
   // seleccionarCategoria(categoria: string | null) {
