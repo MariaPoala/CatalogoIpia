@@ -15,7 +15,8 @@
     "CATEGORIA":"BADIA",
     "DESCRIPCION":null,
     "UNIDAD DE MEDIDA":"UNIDADES",
-    "PRECIO":11.0
+    "PRECIO":11.0,
+    "CATEGORIAGENERAL":"Abarrotes"
   },
   {
     "CÓDIGO":20241016092057,

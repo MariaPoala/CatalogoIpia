@@ -9,6 +9,8 @@ export interface Producto {
   'CATEGORIA': string;
   'UNIDAD DE MEDIDA': string;
   'PRECIO': number;
+  'CATEGORIAGENERAL': string;
+  'CODIGO':string;
 }
 
 @Injectable({
@@ -34,7 +36,7 @@ export class ProductoService {
       console.log("Productos:", data); // Aquí verás los datos reales del JSON
     });
     return this.http.get(this.jsonUrl);
-  
-}
+
+  }
 
 }
