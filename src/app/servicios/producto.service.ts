@@ -33,10 +33,8 @@ export class ProductoService {
   getProductos(): Observable<any> {
     const observable = this.http.get(this.jsonUrl);
     observable.subscribe(data => {
-      console.log("Productos:", data); // Aquí verás los datos reales del JSON
     });
     return this.http.get(this.jsonUrl);
-
   }
 
 }
