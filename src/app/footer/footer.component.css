@@ -1,12 +1,2 @@
 /* footer.component.css */
-:host {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 140px; /* Ajusta según tu diseño */
-  background-color: #f1f1f1; /* o el color que desees */
-  text-align: center;
-  z-index: 1000; /* Para asegurarte de que esté por encima del contenido */
-  box-shadow: 0 -2px 5px rgba(244, 98, 98, 0.1);
-}
+

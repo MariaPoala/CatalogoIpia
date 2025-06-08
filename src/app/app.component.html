@@ -174,32 +174,28 @@
   }
 </style>
 
-<main class="bg-white text-black min-h-screen w-full">
+<main class="bg-white text-black min-h-screen w-full pb-12 ">
   <div class="grid grid-cols-1 md:grid-cols-[auto_1fr] min-h-screen w-full">
     <!-- Sidebar: solo visible en md en adelante, sin fixed -->
     <aside class="hidden md:block bg-red-800 w-64 h-screen p-4">
       <h2 class="text-xl font-bold text-yellow-300 mb-4">CATEGORÍAS</h2>
       <ul class="space-y-2">
         <li>
-          <button (click)="seleccionarCategoriaGeneral(null)"
-          [ngClass]="{
+          <button (click)="seleccionarCategoriaGeneral(null)" [ngClass]="{
             'bg-zinc-100 text-red-900 font-semibold': categoriaSeleccionadas === null,
             'text-white hover:bg-yellow-500': categoriaSeleccionadas !== null
-          }"
-            class="w-full text-left px-3 py-2 rounded-md text-white  transition">
+          }" class="w-full text-left px-3 py-2 rounded-md text-white  transition">
             TODAS
           </button>
         </li>
         <li *ngFor="let categoria of categoriasGeneral">
-          <button 
-          (click)="seleccionarCategoriaGeneral(categoria)"
-          class="w-full text-left px-3 py-2 rounded-md transition"
-          [ngClass]="{
+          <button (click)="seleccionarCategoriaGeneral(categoria)"
+            class="w-full text-left px-3 py-2 rounded-md transition" [ngClass]="{
             'bg-zinc-100 text-red-900 font-semibold': categoriaSeleccionadas === categoria,
             'text-white hover:bg-yellow-500': categoriaSeleccionadas !== categoria
           }">
-          {{ categoria }}
-        </button>
+            {{ categoria }}
+          </button>
         </li>
       </ul>
     </aside>
@@ -256,7 +252,7 @@
               <input type="search" [(ngModel)]="filtroNombre" [ngModelOptions]="{ standalone: true }"
                 (input)="filtrarProductos()" placeholder="Ingresa el nombre de un producto" class="block p-2.5 w-full text-sm text-red-900 bg-red-50 border border-yellow-400 hover:border-yellow-400 rounded-e-lg
                 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500" required />
-              </div>
+            </div>
           </div>
         </form>
 
@@ -290,28 +286,45 @@
     </section>
 
     <!-- SIDEBAR DESLIZANTE PARA MÓVIL -->
-    <div *ngIf="mostrarSidebar" class="fixed inset-0 bg-red-50 z-50 md:hidden" (click)="mostrarSidebar = false">
+    <div *ngIf="mostrarSidebar" class="fixed inset-0 bg-red-50 z-[999] md:hidden" (click)="mostrarSidebar = false">
       <aside class="absolute left-0 top-0 w-64 h-full bg-red-900 p-4" (click)="$event.stopPropagation()">
         <button (click)="mostrarSidebar = false" class="text-white mb-4">✖ Cerrar</button>
-        <h2 class="text-xl font-bold text-white mb-4">Categorías</h2>
+        
+        <h2 class="text-xl font-bold text-yellow-300 mb-4">CATEGORÍAS</h2>
+        
         <ul class="space-y-2">
           <li>
-            <button (click)="seleccionarCategoriaGeneral(null); mostrarSidebar = false"
-              class="w-full text-left px-3 py-2 rounded-md text-white hover:bg-red-200 transition">
+            <button
+              (click)="seleccionarCategoriaGeneral(null); mostrarSidebar = false"
+              [ngClass]="{
+                'bg-zinc-100 text-red-900 font-semibold': categoriaSeleccionadas === null,
+                'text-white hover:bg-yellow-500': categoriaSeleccionadas !== null
+              }"
+              class="w-full text-left px-3 py-2 rounded-md text-white transition">
               TODAS
             </button>
           </li>
+    
           <li *ngFor="let categoria of categoriasGeneral">
-            <button (click)="seleccionarCategoriaGeneral(categoria); mostrarSidebar = false"
-              class="w-full text-left px-3 py-2 rounded-md text-white hover:bg-red-200 transition">
+            <button
+              (click)="seleccionarCategoriaGeneral(categoria); mostrarSidebar = false"
+              [ngClass]="{
+                'bg-zinc-100 text-red-900 font-semibold': categoriaSeleccionadas === categoria,
+                'text-white hover:bg-yellow-500': categoriaSeleccionadas !== categoria
+              }"
+              class="w-full text-left px-3 py-2 rounded-md transition">
               {{ categoria }}
             </button>
           </li>
         </ul>
       </aside>
     </div>
+    
+
   </div>
 </main>
+
+
 
 
 
