@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Producto, ProductoService } from './servicios/producto.service';
-import { NgFor, NgIf } from '@angular/common';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NgFor, HttpClientModule, FooterComponent, NgIf, FormsModule],
+  imports: [RouterOutlet, NgFor, HttpClientModule, FooterComponent, NgIf, FormsModule, CommonModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
@@ -20,10 +20,11 @@ export class AppComponent {
   mostrarDropdown = false;
   categoriaSeleccionada: string | null = null;
   categoriaSeleccionadaGeneral: string | null = null;
+  categoriaSeleccionadas: string | null = null;
   filtroNombre: string = '';
   productosFiltrado: Producto[] = [];
   categoriasGlobales = ['Abarrotes', 'Pastelería', 'Higiene', 'Limpieza', 'Bebidas', 'Snacks'];
-
+  
 
   constructor(private productoService: ProductoService) { }
 
@@ -64,6 +65,7 @@ export class AppComponent {
 
   seleccionarCategoriaGeneral(categoria: string | null) {
     this.categoriaSeleccionadaGeneral = categoria;
+    this.categoriaSeleccionadas = categoria;
     console.log("selec " + this.categoriaSeleccionadaGeneral);
     this.filtroNombre = '';
 

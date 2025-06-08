@@ -25,3 +25,7 @@
   width: auto; 
   height: auto;
 }
+
+html, body {
+  height: 100%;
+}

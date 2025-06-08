@@ -173,24 +173,33 @@
     }
   }
 </style>
-  
-<main class="bg-white text-black min-h-screen">
-  <div class="grid grid-cols-1 md:grid-cols-[auto_1fr] min-h-screen">
+
+<main class="bg-white text-black min-h-screen w-full">
+  <div class="grid grid-cols-1 md:grid-cols-[auto_1fr] min-h-screen w-full">
     <!-- Sidebar: solo visible en md en adelante, sin fixed -->
-    <aside class="hidden md:block bg-red-900 w-64 h-screen p-4">
-      <h2 class="text-xl font-bold text-white mb-4">Categorías</h2>
+    <aside class="hidden md:block bg-red-800 w-64 h-screen p-4">
+      <h2 class="text-xl font-bold text-yellow-300 mb-4">CATEGORÍAS</h2>
       <ul class="space-y-2">
         <li>
           <button (click)="seleccionarCategoriaGeneral(null)"
-            class="w-full text-left px-3 py-2 rounded-md text-white hover:bg-red-200 transition">
+          [ngClass]="{
+            'bg-zinc-100 text-red-900 font-semibold': categoriaSeleccionadas === null,
+            'text-white hover:bg-yellow-500': categoriaSeleccionadas !== null
+          }"
+            class="w-full text-left px-3 py-2 rounded-md text-white  transition">
             TODAS
           </button>
         </li>
         <li *ngFor="let categoria of categoriasGeneral">
-          <button (click)="seleccionarCategoriaGeneral(categoria)"
-            class="w-full text-left px-3 py-2 rounded-md text-white hover:bg-red-200 transition">
-            {{ categoria }}
-          </button>
+          <button 
+          (click)="seleccionarCategoriaGeneral(categoria)"
+          class="w-full text-left px-3 py-2 rounded-md transition"
+          [ngClass]="{
+            'bg-zinc-100 text-red-900 font-semibold': categoriaSeleccionadas === categoria,
+            'text-white hover:bg-yellow-500': categoriaSeleccionadas !== categoria
+          }">
+          {{ categoria }}
+        </button>
         </li>
       </ul>
     </aside>
@@ -199,7 +208,8 @@
     <!-- COLUMNA DERECHA CON MARGEN IZQUIERDO -->
     <section class="bg-white p-6 w-full min-h-screen">
 
-      <div class="max-w-7xl mx-auto">
+      <div class="mx-auto">
+        <!-- <div class="max-w-7xl mx-auto"> -->
         <h2 class="text-3xl font-bold text-red-600 mb-6">CATÁLOGO DE PRODUCTOS IPIA</h2>
 
         <!-- FORMULARIO DE BÚSQUEDA -->
@@ -208,13 +218,13 @@
 
             <!-- BOTÓN DE SIDEBAR PARA MÓVIL -->
             <button type="button" (click)="mostrarSidebar = true"
-              class="md:hidden shrink-0 inline-flex items-center py-2.5 px-3 text-sm font-medium text-white bg-red-900 border border-red-900 rounded-lg hover:bg-red-800">
+              class="md:hidden shrink-0 inline-flex items-center py-2.5 px-3 text-sm font-medium text-white bg-red-900 border border-yellow-500 rounded-lg hover:bg-red-800">
               ☰
             </button>
 
             <!-- Botón Dropdown -->
             <button type="button" (click)="mostrarDropdown = !mostrarDropdown"
-              class="shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-red-900 bg-red-100 border border-red-300 rounded-s-lg hover:bg-red-200">
+              class="shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-red-900 bg-red-100 border border-yellow-400 rounded-s-lg hover:bg-red-200">
               Todas las categorías
               <svg class="w-2.5 h-2.5 ml-2" fill="none" viewBox="0 0 10 6">
                 <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -224,7 +234,7 @@
 
             <!-- Dropdown Lista -->
             <div *ngIf="mostrarDropdown"
-              class="absolute z-30 bg-white border border-red-200 divide-y divide-red-100 rounded-lg shadow-lg w-44 max-h-60 overflow-y-auto top-full mt-1 left-[3rem]">
+              class="absolute z-30 bg-white border border-yellow-400 divide-y divide-red-100 rounded-lg shadow-lg w-44 max-h-60 overflow-y-auto top-full mt-1 left-[3rem]">
               <ul class="py-2 text-sm text-red-700">
                 <li>
                   <button type="button" (click)="seleccionarYCerrarDropdown(null)"
@@ -244,17 +254,9 @@
             <!-- Input de búsqueda -->
             <div class="relative w-full">
               <input type="search" [(ngModel)]="filtroNombre" [ngModelOptions]="{ standalone: true }"
-                (input)="filtrarProductos()" placeholder="Ingresa el nombre de un producto"
-                class="block p-2.5 w-full text-sm text-black bg-red-50 border border-red-300 rounded-e-lg focus:ring-red-500 focus:border-red-500"
-                required />
-              <button type="submit"
-                class="absolute top-0 right-0 p-2.5 text-sm font-medium text-white bg-red-700 rounded-e-lg hover:bg-red-800">
-                <svg class="w-4 h-5.5" fill="none" viewBox="0 0 20 20">
-                  <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    d="M8 4a4 4 0 100 8 4 4 0 000-8zm6 6l4 4" />
-                </svg>
-              </button>
-            </div>
+                (input)="filtrarProductos()" placeholder="Ingresa el nombre de un producto" class="block p-2.5 w-full text-sm text-red-900 bg-red-50 border border-yellow-400 hover:border-yellow-400 rounded-e-lg
+                focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500" required />
+              </div>
           </div>
         </form>
 
@@ -263,7 +265,7 @@
           <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-6 px-4">
             <div *ngFor="let producto of productosFiltrado"
               class="bg-white rounded-2xl shadow hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-              <div class="h-48 w-full bg-gray-100 flex items-center justify-center overflow-hidden">
+              <div class="h-36 w-full bg-white flex items-center justify-center overflow-hidden">
                 <img [src]="(producto['IMAGEN']?.trim() || 'sinimagen.jpg')"
                   [alt]="producto['DESCRIPCIÓN'] || 'Sin descripción'" (error)="onImgError($event)"
                   class="h-full object-contain transition-transform duration-300 hover:scale-105" />
@@ -288,8 +290,7 @@
     </section>
 
     <!-- SIDEBAR DESLIZANTE PARA MÓVIL -->
-    <div *ngIf="mostrarSidebar" class="fixed inset-0 bg-red-50 z-50 md:hidden"
-      (click)="mostrarSidebar = false">
+    <div *ngIf="mostrarSidebar" class="fixed inset-0 bg-red-50 z-50 md:hidden" (click)="mostrarSidebar = false">
       <aside class="absolute left-0 top-0 w-64 h-full bg-red-900 p-4" (click)="$event.stopPropagation()">
         <button (click)="mostrarSidebar = false" class="text-white mb-4">✖ Cerrar</button>
         <h2 class="text-xl font-bold text-white mb-4">Categorías</h2>
