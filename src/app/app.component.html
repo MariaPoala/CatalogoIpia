@@ -177,7 +177,7 @@
 <main class="bg-white text-black min-h-screen w-full pb-12 ">
   <div class="grid grid-cols-1 md:grid-cols-[auto_1fr] min-h-screen w-full">
     <!-- Sidebar: solo visible en md en adelante, sin fixed -->
-    <aside class="hidden md:block bg-red-800 w-64 h-screen p-4">
+    <aside class="hidden md:block bg-red-900 w-64 h-screen p-4">
       <h2 class="text-xl font-bold text-yellow-300 mb-4">CATEGORÍAS</h2>
       <ul class="space-y-2">
         <li>
@@ -206,7 +206,7 @@
 
       <div class="mx-auto">
         <!-- <div class="max-w-7xl mx-auto"> -->
-        <h2 class="text-3xl font-bold text-red-600 mb-6">CATÁLOGO DE PRODUCTOS IPIA</h2>
+        <h2 class="text-2xl font-sans text-red-900 mb-6">CATÁLOGO DE PRODUCTOS IPIA</h2>
 
         <!-- FORMULARIO DE BÚSQUEDA -->
         <form class="max-w-3xl mb-6 relative">
@@ -258,21 +258,19 @@
 
         <!-- PRODUCTOS -->
         <div class="mt-4">
-          <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-6 px-4">
+          <div class="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-6 ">
             <div *ngFor="let producto of productosFiltrado"
-              class="bg-white rounded-2xl shadow hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-              <div class="h-36 w-full bg-white flex items-center justify-center overflow-hidden">
+              class=" rounded-2xl shadow hover:shadow-xl transition-shadow duration-300 overflow-hidden bg-red-50">
+              <div class="h-25 sm:h-36  w-full bg-white flex items-center justify-center overflow-hidden">
                 <img [src]="(producto['IMAGEN']?.trim() || 'sinimagen.jpg')"
                   [alt]="producto['DESCRIPCIÓN'] || 'Sin descripción'" (error)="onImgError($event)"
                   class="h-full object-contain transition-transform duration-300 hover:scale-105" />
-
-
               </div>
               <div class="p-4 space-y-1">
-                <h3 class="text-base font-semibold text-gray-800">
+                <h3 class=" font-semibold text-xs sm:text-sm text-gray-800">
                   {{ producto['DESCRIPCIÓN'] }}
                 </h3>
-                <p class="text-sm text-gray-500">
+                <p class="text-xs text-gray-500">
                   Unidad: {{ producto['UNIDAD DE MEDIDA'] }}
                 </p>
                 <!-- <p class="text-lg font-bold text-red-600">
@@ -333,4 +331,4 @@
 <div class="page-content">
   <router-outlet></router-outlet>
 </div>
-<app-footer></app-footer>
+<!-- <app-footer></app-footer> -->
